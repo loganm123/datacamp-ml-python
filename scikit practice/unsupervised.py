@@ -19,14 +19,11 @@ import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 
 #loads wine datasets as a numpy array
-wine = datasets.load_wine()
-
-#converts to numpy array
-wine_a = np.asarray(wine)
+samples, y = datasets.load_wine(return_X_y=True)
 
 #builds TSNE model
 model = TSNE(learning_rate=50)
 
-tsne_features = model.fit_transform(wine_a)
+tsne_features = model.fit_transform(samples)
 
 print(tsne_features)
