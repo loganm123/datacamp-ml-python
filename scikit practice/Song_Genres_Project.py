@@ -5,12 +5,14 @@
 #imports pandas
 import pandas as pd
 
-#readin track metadata with genre labels
-tracks = pd.read_csv("fma-rock-vs-hiphop.csv")
+# Read in track metadata with genre labels
+tracks = pd.read_csv("\fma-rock-vs-hiphop")
 
-#read in track metrics with the features
-echohonest_metrics = pd.read_json("echonest-metrics.json",precise_float= True)
+# Read in track metrics with the features
+echonest_metrics = pd.read_json("C:\GitHub\datacamp-ml-python\scikit practice\echonest-metrics.json")
 
-#merge the relevant columns of tracks and echohonest_metrics on track ID retaining
-#only track and genre from tracks
-echo_tracks = pd.tracks.merge(left_on='track')
+# Merge the relevant columns of tracks and echonest_metrics
+echo_tracks = pd.merge(left = echonest_metrics, right = tracks[['track_id','genre_top']], on = 'track_id', how = 'left')
+
+# Inspect the resultant dataframe
+echo_tracks.head(10)
