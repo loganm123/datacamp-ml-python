@@ -9,6 +9,7 @@ import pandas as pd
 #import train test split
 from sklearn.model_selection import train_test_split
 
+#setting the right working directory
 import os
 print(os.getcwd())
 os.chdir("/Users/loganmarek/Development/datacamp-ml-python/scikit_practice/CART_Census_Data")
@@ -24,6 +25,8 @@ import numpy as np
 #reads in the census data
 census_data = pd.read_csv("adult.csv")
 
+# In[cell3]
 census_data.info()
 
+# In[cell4]
 census_data.head(10)
