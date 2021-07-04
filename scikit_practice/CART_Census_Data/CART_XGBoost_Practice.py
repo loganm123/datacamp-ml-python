@@ -4,6 +4,7 @@
 
 
 #fix the value error from the y_train data... I formatted it wrong somehow
+#fixing value error by changing to binary values for things like workign class instead of objects
 
 # In[cell1]
 #import pandas
@@ -35,8 +36,10 @@ census_data['greater_than_50k']=np.where(census_data['income'] == '>50K',1,0)
 
 census_data.head(15)
 
+census_data.info()
+
 #create target variable and features dataframes
-X,y = census_data.iloc[:,:-1],census_data.iloc[:,-1:]
+X,y = census_data.iloc[:,:-2],census_data.iloc[:,-1]
 
 #train test split the data with a random state so it's repeatable
 X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.15, random_state = 70)
@@ -45,6 +48,9 @@ X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.15, rando
 xg_cl = xgb.XGBClassifier(objective = 'binary: logistic', n_estimators = 10, seed = 12345)
 
 xg_cl.fit(X_train, y_train)
+
+y_train.head(10)
+X_train.head(10)
 
 preds = xg_cl.predict(X_test)
 
