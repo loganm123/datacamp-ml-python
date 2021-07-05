@@ -4,8 +4,8 @@
 
 
 #to do
-#fix the xgbboost error
-#apply one hot encoder to the integer stand ins
+#finishing applying one hote encoder to the variables in the
+#final phase before separating into X and y data
 
 # %%
 #import pandas
@@ -53,7 +53,7 @@ census_data = pd.read_csv("adult.csv")
 cat_mask = (census_data.dtypes == 'object')
 
 #creates a OneHotEncoder from the cat mask booleans
-ohe = OneHotEncoder(categorical_features = cat_mask, sparse = False)
+ohe = OneHotEncoder(sparse = False)
 
 #get a list of categorical column names
 cat_col = census_data.columns[cat_mask].tolist()
@@ -77,7 +77,7 @@ X,y = census_data.iloc[:,:-2],census_data.iloc[:,-1]
 X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.15, random_state = 70)
 
 #create XGB Classifier
-xg_cl = xgb.XGBClassifier(objective = 'binary: logistic', n_estimators = 10, seed = 12345)
+xg_cl = xgb.XGBClassifier(objective = 'binary:logistic', n_estimators = 10, seed = 12345)
 
 #%%
 xg_cl.fit(X_train, y_train)
@@ -85,6 +85,6 @@ xg_cl.fit(X_train, y_train)
 #%%
 preds = xg_cl.predict(X_test)
 
-accuracy = float(np.sums(preds==y_test))/y_test.shape[0]
+accuracy = float(np.sum(preds==y_test))/y_test.shape[0]
 
 print("accuracy: %f" % (accuracy))
