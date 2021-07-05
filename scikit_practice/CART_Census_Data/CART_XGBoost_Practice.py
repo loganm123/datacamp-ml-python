@@ -5,7 +5,7 @@
 
 #fix the value error from the y_train data... I formatted it wrong somehow
 #fixing value error by changing to binary values for things like workign class instead of objects
-
+#labelencoder
 # In[cell1]
 #import pandas
 import pandas as pd
